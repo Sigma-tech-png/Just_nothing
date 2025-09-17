@@ -1,35 +1,23 @@
-import { Route,Routes,Link } from "react-router-dom";
-import Home from "./page/Home";
-import About from "./page/About";
-import Contact from "./page/Contact";
-import NewAbout from "./page/AboutNew";
-import Book from "./page/Book";
+import { Link, useNavigate } from "react-router-dom"
 
 export default function App(){
+  const navigate = useNavigate()
+
+  function handleClick(){
+    navigate(-1)
+  }
+
   return(
     <>
+      <h1>Main Home Page</h1>
+      <p>It's own home page</p>
+
       <nav>
-        <ul>
-
-          <li><Link to={"/"} element>Home</Link></li>
-          <br />
-          <li><Link to={"/about"}>About</Link></li>
-          <br />
-          <li><Link to={"/contact"}>Contact</Link></li>
-
-        </ul>
+        <Link to={"/about"}>Go About</Link>
       </nav>
-      
-      <Routes>
-        <Route path="/" element={<Home/>} />
-        <Route path="/about">
-          <Route index element={<About/>}/>
-          <Route path="new" element={<NewAbout />}/>
-          <Route path=":id" element={<Book />}/>
-        </Route>
-        <Route path="/contact" element={<Contact/>}></Route>
-        <Route></Route>
-      </Routes>
+
+      <button onClick={handleClick}>Go About</button>
+
     </>
   )
 }
